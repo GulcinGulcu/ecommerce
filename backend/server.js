@@ -15,7 +15,7 @@ app.post("/api/products", async (req, res) => {
   if (!product.name || !product.price || !product.image) {
     return res
       .status(400)
-      .json({ success: false, massage: "Please provide all fields." });
+      .json({ success: false, message: "Please provide all fields." });
   }
 
   const newProduct = new Product(product);
@@ -23,7 +23,7 @@ app.post("/api/products", async (req, res) => {
     await newProduct.save();
     res.status(201).json({ success: true, data: newProduct });
   } catch (error) {
-    console.error("Error in creating the product", error.massage);
+    console.error("Error in creating the product", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 });
