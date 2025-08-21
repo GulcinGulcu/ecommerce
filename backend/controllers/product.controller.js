@@ -34,6 +34,12 @@ export const updateProduct = async (req, res) => {
   const { id } = req.params;
   const product = req.body;
 
+  if (!product.name || !product.price || !product.image) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Please provide all fields." });
+  }
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ success: false, message: "Invalid product id." });
   }

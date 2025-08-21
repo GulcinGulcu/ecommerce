@@ -66,8 +66,8 @@ export const ProductCard = ({ product }) => {
         closable: true,
         duration: 4000,
       });
+      setOpen(false);
     }
-    setOpen(false);
   };
 
   return (
@@ -164,7 +164,11 @@ export const ProductCard = ({ product }) => {
                 </VStack>
               </Dialog.Body>
               <Dialog.Footer>
-                <Button onClick={() => handleUpdateProduct(product._id, updatedProduct)}>
+                <Button
+                  onClick={() =>
+                    handleUpdateProduct(product._id, updatedProduct)
+                  }
+                >
                   Update
                 </Button>
                 <Dialog.ActionTrigger asChild>
