@@ -23,7 +23,7 @@ import { useColorModeValue } from "./ui/color-mode";
 
 export const ProductCard = ({ product }) => {
   const [updatedProduct, setUpdatedProduct] = useState(product);
-  const { deleteProduct } = useProductStore();
+  const { deleteProduct, updateProduct } = useProductStore();
   const [open, setOpen] = useState(false);
 
   const handleDeleteProduct = async (id) => {
@@ -47,6 +47,29 @@ export const ProductCard = ({ product }) => {
       });
     }
   };
+
+  const handleUpdateProduct = async (id, updatedProduct) => {
+    const { success, message } = await updateProduct(id, updatedProduct);
+    if (!success) {
+      toaster.create({
+        title: "Error",
+        description: message,
+        type: "error",
+        closable: true,
+        duration: 4000,
+      });
+    } else {
+      toaster.create({
+        title: "Success",
+        description: message,
+        type: "success",
+        closable: true,
+        duration: 4000,
+      });
+    }
+    setOpen(false);
+  };
+
   return (
     <Box
       rounded="md"
@@ -106,6 +129,12 @@ export const ProductCard = ({ product }) => {
                     placeholder="Product Name"
                     name="name"
                     value={updatedProduct.name}
+                    onChange={(e) =>
+                      setUpdatedProduct({
+                        ...updatedProduct,
+                        name: e.target.value,
+                      })
+                    }
                   />
                   <Input
                     variant="subtle"
@@ -113,17 +142,31 @@ export const ProductCard = ({ product }) => {
                     name="price"
                     type="number"
                     value={updatedProduct.price}
+                    onChange={(e) =>
+                      setUpdatedProduct({
+                        ...updatedProduct,
+                        price: e.target.value,
+                      })
+                    }
                   />
                   <Input
                     variant="subtle"
                     placeholder="Image URL"
                     name="image"
                     value={updatedProduct.image}
+                    onChange={(e) =>
+                      setUpdatedProduct({
+                        ...updatedProduct,
+                        image: e.target.value,
+                      })
+                    }
                   />
                 </VStack>
               </Dialog.Body>
               <Dialog.Footer>
-                <Button>Update</Button>
+                <Button onClick={() => handleUpdateProduct(product._id, updatedProduct)}>
+                  Update
+                </Button>
                 <Dialog.ActionTrigger asChild>
                   <Button variant="outline">Cancel</Button>
                 </Dialog.ActionTrigger>
