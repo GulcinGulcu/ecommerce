@@ -6,7 +6,7 @@ import { CreatePage } from "./pages/CreatePage";
 import { useColorModeValue } from "./components/ui/color-mode";
 
 function App() {
-  const bg = useColorModeValue("orange.50", "gray.900");
+  const bg = useColorModeValue("orange.50", "cyan.950");
   const color = useColorModeValue("gray.900", "teal.50");
   return (
     <Box minH={"100vh"} bg={bg} color={color}>

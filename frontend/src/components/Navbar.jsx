@@ -1,6 +1,13 @@
 "use client";
 
-import { Container, Flex, HStack, IconButton, Text, Separator } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  HStack,
+  IconButton,
+  Text,
+  Separator,
+} from "@chakra-ui/react";
 import CartIcon from "../icons/CartIcon";
 import { Link } from "react-router-dom";
 import PlusIcon from "../icons/PlusIcon";
@@ -31,7 +38,7 @@ export const Navbar = () => {
           gap={2}
           letterSpacing={1.5}
         >
-          Product Store
+          <Link to={"/"}>Product Store</Link>
           <CartIcon />
         </Text>
         <HStack alignItems={"center"} gap={"4"}>
@@ -43,7 +50,7 @@ export const Navbar = () => {
           <ColorModeButton variant={"surface"} />
         </HStack>
       </Flex>
-      <Separator variant="solid" my={3}/>
+      <Separator variant="solid" my={3} />
     </Container>
   );
 };

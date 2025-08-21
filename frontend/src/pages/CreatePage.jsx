@@ -24,7 +24,6 @@ export const CreatePage = () => {
 
   const handleAddProduct = async () => {
     const { success, message } = await createProduct(newProduct);
-    console.log(success, message);
     if (!success) {
       toaster.create({
         title: "Error",
@@ -55,7 +54,7 @@ export const CreatePage = () => {
         <Box
           w={"full"}
           p={6}
-          bg={useColorModeValue("white", "gray.800")}
+          bg={useColorModeValue("white", "cyan.900")}
           rounded={"lg"}
           shadow={"md"}
         >
